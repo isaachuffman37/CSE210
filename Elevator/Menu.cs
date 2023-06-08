@@ -60,7 +60,7 @@ public class Menu{
             VipElevator vipElevator = new VipElevator();
             Console.Write("What is the access code? ");
             string accessCode = Console.ReadLine() ?? string.Empty;
-            if (VerifyAccessCode())
+            if (vipElevator.Verify(accessCode) == true)
             {
                 vipElevator.AddFloor();
             }

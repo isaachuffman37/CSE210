@@ -37,7 +37,7 @@ public class Elevator
     {
         Console.Write("What floor are you on? ");
         int floor = Console.Read();
-        MoveToAFloor(floor);
+        MoveToAFloor();
         Console.WriteLine("Your elevator is here");
     }
 

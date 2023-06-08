@@ -1,4 +1,4 @@
-public class VIP : Elevator{
+public class VipElevator : Elevator{
     private string _accessCode = "1234";
     public void AddFloor()
     {
