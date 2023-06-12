@@ -2,7 +2,7 @@ public class ListingActivity : Activity
 {
     List<string> _prompts = new List<string>();
     List<string> _usedPrompts = new List<string>();
-    List<string> _responses = new List<string>();
+    int count;
     public ListingActivity(string name, string explanation) : base(name, explanation)
     {
         _prompts.Add("Who are people that you appreciate?");
@@ -74,11 +74,14 @@ public class ListingActivity : Activity
         DateTime futureTime = DateTime.Now.AddSeconds(_duration);
         while(currentTime < futureTime)
         {
+            count = count + 1;
             Console.Write(">");
             string response = Console.ReadLine() ?? String.Empty;
             currentTime = DateTime.Now;
 
         }
+        Console.WriteLine($"You have listed {count} items");
+        PauseSpinner(4);
         DisplayEndMessage();
 
 
