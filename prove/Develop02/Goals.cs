@@ -72,7 +72,7 @@ public abstract class Goals
 
     public abstract string DisplayGoal();
 
-    public abstract string GetType();
+    public abstract string GetGoalType();
 
     public virtual int GetDenominator()
     {

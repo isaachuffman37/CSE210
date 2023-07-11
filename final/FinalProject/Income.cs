@@ -1,9 +1,9 @@
 public class Income : Transaction
 {
     string _source;
-    public override void DisplayTransaction()
+    public override string DisplayTransaction()
     {
-        
+        return $"+{_amount} {_description} {_date}";
     }
 
     public void GetSource()
@@ -17,18 +17,28 @@ public class Income : Transaction
         _source = source;
     }
 
-    public override void AddTransaction()
+    public override void AddTransaction(BankAccount b)
     {
-        base.AddTransaction();
+        base.AddTransaction(b);
         GetSource();
+        AddTransactionToBalance(b);
     }
 
-    public string ReturnIncomeDate()
+    
+
+    public float ReturnIncomeAmount()
     {
-        return _date;
+        return _amount;
     }
 
+    public override void GetTransactionType()
+    {
+        _type = "income";
+    }
     
 
+    public override void AddTransactionToBalance(BankAccount b)
+    {
     
+    }
 }

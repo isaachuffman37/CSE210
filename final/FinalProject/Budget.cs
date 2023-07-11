@@ -3,9 +3,15 @@ public class Budget
     string _category;
     float _amount;
     float _currentlySpent;
+    float _percent;
 
     public void DisplayBudget()
     {
+        _percent = (float)Math.Round(_currentlySpent/_amount * 100,1,MidpointRounding.AwayFromZero);
+
+        Console.WriteLine($"{_category}: {_currentlySpent}/{_amount}");
+        Console.WriteLine($"Percentage spent: {_percent}");
+        Console.WriteLine("");
 
     }
 

@@ -1,6 +1,6 @@
 public class SimpleGoal : Goals 
 {
-    public override string GetType()
+    public override string GetGoalType()
     {
         _type = "Simple Goal";
         return _type;

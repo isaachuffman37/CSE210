@@ -10,7 +10,7 @@ public class User
 
     public void GetName()
     {
-        Console.Write("What is your name?");
+        Console.Write("What is your name? ");
         _name = Console.ReadLine();
     }
 
@@ -21,7 +21,7 @@ public class User
 
     public void GetPassword()
     {
-        Console.Write("What is your password?");
+        Console.Write("What is your password? ");
         _password = Console.ReadLine();
     }
 

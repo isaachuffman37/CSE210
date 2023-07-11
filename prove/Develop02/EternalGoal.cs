@@ -1,6 +1,6 @@
 public class EternalGoal : Goals
 {
-    public override string GetType()
+    public override string GetGoalType()
     {
         _type = "Eternal Goal";
         return _type;

@@ -3,6 +3,7 @@ public class Menu
     List<Budget> _budgets = new List<Budget>();
     List<Expense> _expenses = new List<Expense>();
     List<Transaction> _transactions = new List<Transaction>();
+    List<Income> _incomes = new List<Income>();
 
     string _budgetResponse = "";
     string _accountResponse;
@@ -39,30 +40,45 @@ public class Menu
 
         while (_optionResponse != "8")
         {
-            Console.Write("1. View Account And History\n2. Add Budget Element\n3. Add Expense\n4. Add Income\n5. View Report\n6. Save\n7. Load\n8. Quit\nWhich would you like to do?");
+            Console.Write("1. View Account And History\n2. Add Budget Element\n3. Add Expense\n4. Add Income\n5. View Report\n6. Save\n7. Load\n8. Quit\nWhich would you like to do? ");
             _optionResponse = Console.ReadLine();
 
             switch(_optionResponse)
             {
                 case "1":
-                    
+                    b.DisplayBankAccount();
+                    b.DisplayTransactions(_transactions);
                     break;
                 case "2":
-
+                    Budget budget = new Budget();
+                    budget.AddBudget();
+                    _budgets.Add(budget);
                     break;
                 case "3":
-
+                    Expense e = new Expense();
+                    e.AddTransaction(b);
+                    b.AddTransactionToBalance(e);
+                    _transactions.Add(e);
+                    _expenses.Add(e);
                     break;
                 case "4":
-
+                    Income i = new Income();
+                    i.AddTransaction(b);
+                    b.AddTransactionToBalance(i);
+                    _transactions.Add(i);
+                    _incomes.Add(i);
                     break;
                 case "5":
-
+                    Report r = new Report();
+                    r.DisplayReport(_budgets,_expenses,_incomes);
                     break;
                 case "6":
 
                     break;
                 case "7":
+
+                    break;
+                case "8":
 
                     break;
                 default:
@@ -77,15 +93,11 @@ public class Menu
         }
 
 
-
-
-
-            
-            
-            
-
-
-
         }
+    }
+
+    public void SaveToFile()
+    {
+        
     }
 }

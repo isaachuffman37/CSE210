@@ -1,9 +1,9 @@
 public class Expense : Transaction
 {
     string _category;
-    public override void DisplayTransaction()
+    public override string DisplayTransaction()
     {
-            
+            return $"{_amount} {_description} {_date}";
     }
 
     public void GetCategory()
@@ -22,20 +22,22 @@ public class Expense : Transaction
         return _category;
     }
 
-    public float ReturnAmount()
+    public override void AddTransaction(BankAccount b)
     {
-        return _amount;
-    }
-
-    public override void AddTransaction()
-    {
-        base.AddTransaction();
+        base.AddTransaction(b);
         GetCategory();
+        AddTransactionToBalance(b);
     }
 
-    public string ReturnExpenseDate()
+
+    public override void GetTransactionType()
     {
-        return _date;
+        _type = "expense";
     }
-    
+
+    public override void AddTransactionToBalance(BankAccount b)
+    {
+        float balance = b.ReturnBalance();
+        balance -= _amount; 
+    }
 }

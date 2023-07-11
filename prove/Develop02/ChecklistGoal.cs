@@ -3,7 +3,7 @@ public class ChecklistGoal : Goals
     int _numerator = 0;
     int _denominator;
     int _completedPoints;
-    public override string GetType()
+    public override string GetGoalType()
     {
         _type = "Checklist Goal";
         return _type;
