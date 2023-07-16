@@ -2,6 +2,7 @@ public class User
 {
     string _name;
     string _password;
+    string _type = "user";
 
     public void DisplayName()
     {
@@ -35,4 +36,19 @@ public class User
         GetName();
         GetPassword();
     }
+    public string ReturnName()
+    {
+        return _name;
+    }
+    public string ReturnPassword()
+    {
+        return _password;
+    }
+
+    public string StringifyUser()
+    {
+        return $"{_type};{_name};{_password}";
+    }
+
+    
 }

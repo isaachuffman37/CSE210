@@ -1,0 +1,13 @@
+user;Isaac;lineman
+account;Married;2346277342823482;14098.860664367676
+budget;groceries;480
+budget;gas;120
+budget;home;50
+budget;rent;850
+expense;36.54;groceries;07/08/2023;groceries
+expense;56.54;lawn mower;07/08/2023;home
+expense;14.32;toilet paper;07/15/2023;home
+expense;25.67;paid rent;07/15/2023;rent
+income;65.34;rings;07/07/2023;ring shop
+income;400.58;work;07/11/2023;work
+income;20;birthday;07/15/2023;nana and papa

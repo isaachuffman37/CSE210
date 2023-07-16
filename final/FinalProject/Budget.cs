@@ -3,16 +3,31 @@ public class Budget
     string _category;
     float _amount;
     float _currentlySpent;
+    float _amountLeft;
     float _percent;
+    string _type = "budget";
 
     public void DisplayBudget()
     {
         _percent = (float)Math.Round(_currentlySpent/_amount * 100,1,MidpointRounding.AwayFromZero);
-
+        _amountLeft = (float)Math.Round(_amount - _currentlySpent,2);
         Console.WriteLine($"{_category}: {_currentlySpent}/{_amount}");
-        Console.WriteLine($"Percentage spent: {_percent}");
+        Console.WriteLine($"Percentage spent: {_percent}%");
+        if (_amountLeft > 0)
+        {   
+            Console.WriteLine("You are currently UNDER budget.");
+            Console.WriteLine($"Amount left: ${_amountLeft}");
+        }
+        else if (_amountLeft == 0)
+        {
+            Console.WriteLine("You have spent your budget");
+        }
+        else if (_amountLeft < 0)
+        {
+            Console.WriteLine("You have spent more than what you budgeted.");
+            Console.WriteLine($"Amount overused: ${_amountLeft}");
+        }
         Console.WriteLine("");
-
     }
 
     public void GetCurrentlySpent()
@@ -70,6 +85,11 @@ public class Budget
         GetBudgetAmount();
         GetCurrentlySpent();
 
+    }
+
+    public string StringifyBudget()
+    {
+        return $"{_type};{_category};{_amount}";
     }
 
 

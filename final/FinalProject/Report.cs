@@ -3,43 +3,70 @@ public class Report
     DateTime _startDate;
     DateTime _endDate;
     float _totalExpenses;
-    float _totalIncome;
-    float _percentOfExpenses;
+    float _totalIncome;    
     float _addAmount;
     float _expenseAmount;
     float _incomeAmount;
 
-    public void CalcCurrentBudgets(List<Budget>budgets, List<Expense>expenses)
+    public void CalcCurrentBudgets(List<Budget> budgets, List<Expense> expenses, List<Expense> usedExpenses)
     {
-        foreach (Budget budget in budgets)
+        List<Expense> removeExpenses = new List<Expense>();
+        
+        if (expenses.Count() != 0 && budgets.Count() != 0)
         {
-            foreach(Expense expense in expenses)
+            foreach (Budget budget in budgets)
             {
-                if (budget.ReturnCategory() == expense.ReturnExpenseCategory() && expense.ReturnDate() >= _startDate && expense.ReturnDate() <= _endDate)
+                foreach (Expense expense in expenses)
                 {
-                    _addAmount = expense.ReturnAmount();
-                    budget.AddExpenseToBudget(_addAmount);
+                    if (budget.ReturnCategory() == expense.ReturnExpenseCategory() && expense.ReturnDate() >= _startDate && expense.ReturnDate() <= _endDate)
+                    {
+                        _addAmount = expense.ReturnAmount();
+                        budget.AddExpenseToBudget(_addAmount);
+                        removeExpenses.Add(expense);
+                        usedExpenses.Add(expense);
+                    }
                 }
+            }
+
+            foreach (Expense expense in removeExpenses)
+            {
+                expenses.Remove(expense);
             }
         }
     }
 
-    public void CalcTotalExpenses(List<Expense> expenses)
+    public void CalcTotalExpenses(List<Expense> expenses, List<Expense> usedExpenses)
     {
-        foreach(Expense expense in expenses)
+        if (expenses.Count() > 0)
         {
-            DateTime expenseDate = expense.ReturnDate();
-            if(_startDate <= expenseDate && expenseDate <= _endDate)
+            foreach(Expense expense in expenses)
             {
-                _expenseAmount = expense.ReturnAmount();
-                _totalExpenses += _expenseAmount;
+                DateTime expenseDate = expense.ReturnDate();
+                if(_startDate <= expenseDate && expenseDate <= _endDate)
+                {
+                    _expenseAmount = expense.ReturnAmount();
+                    _totalExpenses += _expenseAmount;
+                }
+            }
+        }
+        if (usedExpenses.Count() > 0)
+        {
+            foreach(Expense usedExpense in usedExpenses)
+            {
+                DateTime usedExpenseDate = usedExpense.ReturnDate();
+                if(_startDate <= usedExpenseDate && usedExpenseDate <= _endDate)
+                {
+                     _expenseAmount = usedExpense.ReturnAmount();
+                    _totalExpenses += _expenseAmount;
+                }
             }
         }
     }
 
     public void DisplayTotalExpenses()
     {
-        Console.WriteLine($"Your total expenses are: -{_totalExpenses} ");
+        double roundedExpenses = Math.Round(_totalExpenses, 2);
+        Console.WriteLine($"Your total expenses are: $-{roundedExpenses} ");
     }
 
     public void CalcTotalIncome(List<Income> incomes)
@@ -57,7 +84,8 @@ public class Report
 
     public void DisplayTotalIncome()
     {
-        Console.WriteLine($"Your total income is: {_totalIncome} ");
+        double roundedIncome = Math.Round(_totalIncome, 2);
+        Console.WriteLine($"Your total income is: ${roundedIncome} ");
     }
 
      public void GetStartDate()
@@ -66,12 +94,10 @@ public class Report
         string _userInput = Console.ReadLine();
         if (DateTime.TryParse(_userInput, out _startDate))
         {
-            // Successfully parsed the user input into a DateTime object
-            Console.WriteLine("Parsed DateTime: " + _startDate);
+
         }
         else
         {
-            // Failed to parse the user input
             Console.WriteLine("Invalid date and time format.");
         }
     }
@@ -87,12 +113,10 @@ public class Report
         string endDate = Console.ReadLine();
         if (DateTime.TryParse(endDate, out _endDate))
         {
-            // Successfully parsed the user input into a DateTime object
-            Console.WriteLine("Parsed DateTime: " + _endDate);
+
         }
         else
         {
-            // Failed to parse the user input
             Console.WriteLine("Invalid date and time format.");
         }
     }
@@ -110,13 +134,13 @@ public class Report
         _endDate = endDate;
     }
 
-    public void DisplayReport(List<Budget>budgets, List<Expense>expenses, List<Income> incomes)
+    public void DisplayReport(List<Budget>budgets, List<Expense>expenses, List<Income> incomes, List<Expense> usedExpenses)
     {
         GetStartDate();
         GetEndDate();
-        CalcCurrentBudgets(budgets, expenses);
+        CalcCurrentBudgets(budgets, expenses, usedExpenses);
         DisplayBudgets(budgets);
-        CalcTotalExpenses(expenses);
+        CalcTotalExpenses(expenses, usedExpenses);
         DisplayTotalExpenses();
         CalcTotalIncome(incomes);
         DisplayTotalIncome();

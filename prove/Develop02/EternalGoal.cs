@@ -23,7 +23,7 @@ public class EternalGoal : Goals
         GetName();
         GetDescription();
         GetPoints();
-        GetType();
+        GetGoalType();
     }
 
     public override string DisplayGoal()

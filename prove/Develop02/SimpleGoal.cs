@@ -7,8 +7,15 @@ public class SimpleGoal : Goals
     }
     public override int RecordEvent()
     {
-        Completed();
-        return ReturnPoints();
+        if (_completed == true)
+        {
+            return 0;
+        }
+        else
+        {
+            Completed();
+            return ReturnPoints();
+        }
         
     }
 
@@ -24,7 +31,7 @@ public class SimpleGoal : Goals
         GetName();
         GetDescription();
         GetPoints();
-        GetType();
+        GetGoalType();
     }
 
     public override string DisplayGoal()

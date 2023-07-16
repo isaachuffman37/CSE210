@@ -43,7 +43,7 @@ public class ChecklistGoal : Goals
         GetDenominator();
         GetPoints();
         GetCompletedPoints();
-        GetType();
+        GetGoalType();
     }
 
     public override string DisplayGoal()

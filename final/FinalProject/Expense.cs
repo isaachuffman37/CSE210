@@ -3,7 +3,7 @@ public class Expense : Transaction
     string _category;
     public override string DisplayTransaction()
     {
-            return $"{_amount} {_description} {_date}";
+            return $"-{_amount} {_description} {_date}";
     }
 
     public void GetCategory()
@@ -37,7 +37,14 @@ public class Expense : Transaction
 
     public override void AddTransactionToBalance(BankAccount b)
     {
-        float balance = b.ReturnBalance();
+        double balance = b.ReturnBalance();
         balance -= _amount; 
     }
+
+    public override string StringifyTransaction()
+    {
+        return $"{_type};{_amount};{_description};{_dateInput};{_category}";
+    }
+
+    
 }

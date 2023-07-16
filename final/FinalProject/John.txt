@@ -1,0 +1,5 @@
+user;John;doe
+account;personal;22739200029993;232969.70125198364
+budget;food;360
+expense;25.64;food;07/06/2023;food
+income;56.56;drugs;07/22/2023;drug dealing

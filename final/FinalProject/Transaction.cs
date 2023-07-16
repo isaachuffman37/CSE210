@@ -4,7 +4,7 @@ public abstract class Transaction
     protected string _description;
     protected DateTime _date;
     protected string _type;
-    
+    protected string _dateInput;
 
     public abstract string DisplayTransaction();
 
@@ -32,14 +32,13 @@ public abstract class Transaction
 
     public void GetDate()
     {
-        Console.WriteLine("Enter the date (MM/dd/yyyy): ");
-        string userInput = Console.ReadLine();
+        Console.Write("Enter the date (MM/dd/yyyy): ");
+        _dateInput = Console.ReadLine();
 
 
-        if (DateTime.TryParse(userInput, out _date))
+        if (DateTime.TryParse(_dateInput, out _date))
         {
-            // Successfully parsed the user input into a DateTime object
-            Console.WriteLine("Parsed DateTime: " + _date);
+            
         }
         else
         {
@@ -48,9 +47,21 @@ public abstract class Transaction
         }
     }
 
-    public void SetDate(DateTime date)
+    public void SetDate(string dateInput)
     {
-        _date = date;
+        if (DateTime.TryParse(dateInput, out _date))
+        {
+            
+        }
+        else
+        {
+            Console.WriteLine("Invalid date and time format.");
+        }
+    }
+
+    public void SetDateInput(string dateInput)
+    {
+        _dateInput = dateInput;
     }
     public virtual void AddTransaction(BankAccount b)
     {
@@ -78,4 +89,6 @@ public abstract class Transaction
     public abstract void GetTransactionType();
 
     public abstract void AddTransactionToBalance(BankAccount b);
+
+    public abstract string StringifyTransaction();
 }

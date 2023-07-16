@@ -41,4 +41,11 @@ public class Income : Transaction
     {
     
     }
+
+    public override string StringifyTransaction()
+    {
+        return $"{_type};{_amount};{_description};{_dateInput};{_source}";
+    }
+
+    
 }

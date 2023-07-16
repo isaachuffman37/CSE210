@@ -2,11 +2,12 @@ public class BankAccount
 {
     string _accountName;
     string _accountNumber;
-    float _balance;
+    double _balance;
+    string _type = "account";
 
     public void GetName()
     {
-        Console.Write("What is the name of your account?");
+        Console.Write("What is the name of your account? ");
         _accountName = Console.ReadLine();
     }
 
@@ -17,7 +18,7 @@ public class BankAccount
 
     public void GetNumber()
     {
-        Console.Write("What is your account number?");
+        Console.Write("What is your account number? ");
         _accountNumber = Console.ReadLine();
     }
 
@@ -28,7 +29,7 @@ public class BankAccount
 
     public void GetBalance()
     {
-        Console.Write("What is the balance of your account?");
+        Console.Write("What is the balance of your account? ");
         _balance = float.Parse(Console.ReadLine());
     }
 
@@ -63,7 +64,8 @@ public class BankAccount
 
     public void DisplayBankAccount()
     {
-        Console.WriteLine($"Account Name: {_accountName}\nAccount Number: {_accountNumber}\nCurrent Balance: {_balance}");
+        double roundedBalance = Math.Round(_balance,2);
+        Console.WriteLine($"Account Name: {_accountName}\nAccount Number: {_accountNumber}\nCurrent Balance: ${roundedBalance}");
     }
 
     public void AddTransactionToBalance(Transaction transaction)
@@ -79,9 +81,14 @@ public class BankAccount
         }
     }
 
-    public float ReturnBalance()
+    public double ReturnBalance()
     {
         return _balance;
+    }
+
+    public string StringifyAccount()
+    {
+        return $"{_type};{_accountName};{_accountNumber};{_balance}";
     }
     
 
